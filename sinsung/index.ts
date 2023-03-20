@@ -1,6 +1,6 @@
 import {Sandbox, SandboxOptions, SandboxPlayer} from "ZEPETO.Multiplay";
 import {Player, sVector3, sQuaternion, SyncTransform, PlayerAdditionalValue, ZepetoAnimationParam} from "ZEPETO.Multiplay.Schema";
-import { HttpContentType, HttpService } from "ZEPETO.Multiplay.HttpService";
+import { HttpContentType, HttpService, HttpResponse } from "ZEPETO.Multiplay.HttpService";
 
 export default class extends Sandbox {
     private sessionIdQueue: string[] = [];
@@ -239,32 +239,60 @@ export default class extends Sandbox {
         }
         console.log(`join player, ${client.sessionId}`);
 
-        const saveDataToDatabase = async(name : string, challenge: string) => {
+        // const saveDataToDatabase = async(name : string, challenge: string) => {
             
-            const url = "http://ec2-15-165-203-116.ap-northeast-2.compute.amazonaws.com/index.php";
-            const data = {
-                name,
-                challenge
-            };
-    
-            try{
-                const request = await HttpService.postAsync(url, JSON.stringify(data), HttpContentType.ApplicationJson);
+        //     const url = "http://ec2-15-165-203-116.ap-northeast-2.compute.amazonaws.com/index.php";
+        //     const data = {
+        //         name,
+        //         challenge
+        //     };
+        //     const headers = {
+        //         'Content-Type' : 'application/json',
+        //         'Accept' : '*/*'
+        //         // 'ApplicationXml' : 'application/xml',
+        //         // 'ApplicationUrlEncoded' : 'application/x-www-form-urlencoded',
+        //         // 'TextPlain' : 'text/plain',
+        //         // 'TextXml' : 'text/xml'
+        //     };
+
+        //     try{
+        //         const request = await HttpService.postAsync(url, JSON.stringify(data),  headers);
              
-                if(request.statusCode!== 200){
-                    console.error('HTTP ERROR');
-                    return
-                }
+        //         if(request.statusCode!== 200){
+        //             console.error('HTTP ERROR');
+        //             return
+        //         }
     
-                const json = JSON.parse(request.response);
+        //         const json = JSON.parse(request.response);
                 
-            }catch(error){
-                console.log(error);
-                console.log(`data : ${data}`);
-            }
+        //     }catch(error){
+        //         console.log(error);
+        //         console.log(`data : ${data}`);
+        //     }
     
+        // };
+    
+        // saveDataToDatabase(client.sessionId,"wakeup");
+
+        // const name: string = "kangsinsung";
+        // const challenge: string = "ssssssss";
+        const url: string = "http://ec2-15-165-203-116.ap-northeast-2.compute.amazonaws.com/index.php";
+        const headers = {
+            'Content-Type': 'application/json',
+            'Accept': '*/*'
         };
-    
-        saveDataToDatabase(client.sessionId,"wakeup");
+
+        let body = {
+            "name": "kangsinsung",
+            "challenge": "ssssssss"
+        
+        };
+
+
+        HttpService.postAsync(url, body, headers).then(
+            (res: HttpResponse) => {
+                console.log(`HTTP Result: ${JSON.stringify(res)}`);
+            });
       
     }
 
