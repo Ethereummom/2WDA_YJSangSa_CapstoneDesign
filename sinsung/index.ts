@@ -1,6 +1,6 @@
 import {Sandbox, SandboxOptions, SandboxPlayer} from "ZEPETO.Multiplay";
 import {Player, sVector3, sQuaternion, SyncTransform, PlayerAdditionalValue, ZepetoAnimationParam} from "ZEPETO.Multiplay.Schema";
-import { HttpContentType, HttpService, HttpResponse } from "ZEPETO.Multiplay.HttpService";
+import { HttpContentType, HttpService, HttpResponse, HttpHeader, HttpBodyType } from "ZEPETO.Multiplay.HttpService";
 
 export default class extends Sandbox {
     private sessionIdQueue: string[] = [];
@@ -297,20 +297,21 @@ export default class extends Sandbox {
     }
 
     RequestChatGPT() {
-        const url: string = "http://ec2-15-165-203-116.ap-northeast-2.compute.amazonaws.com/index.php";
-        const headers = {
+        // const url: string = "http://ec2-15-165-203-116.ap-northeast-2.compute.amazonaws.com/index.php";
+        const url: string = "http://localhost:8080/member01/mem_models/sinsung_dao.jsp";
+        const headers:HttpHeader = {
             'Content-Type': 'application/json',
-            'Accept': '*/*'
+            // 'Accept': '*/*',
+            // // 'Content-Length': 0
         };
 
-        let body = {
+        let body:HttpBodyType = {
             "name": "kangsinsung",
             "challenge": "jjjjjj",
         
         };
 
-
-        HttpService.postAsync(url, body, headers ).then(
+        HttpService.postAsync(url, JSON.stringify(body), headers).then(
            
             (res: HttpResponse) => {
                 
