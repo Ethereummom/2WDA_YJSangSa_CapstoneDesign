@@ -10,6 +10,8 @@ export default class extends Sandbox {
 
     onCreate(options: SandboxOptions) {
 
+        this.RequestChatGPT();
+
         // const data = {
         //     name : 'kimyuhyeon',
         //     challenge:'wake up'
@@ -276,24 +278,8 @@ export default class extends Sandbox {
 
         // const name: string = "kangsinsung";
         // const challenge: string = "ssssssss";
-        const url: string = "http://ec2-15-165-203-116.ap-northeast-2.compute.amazonaws.com/index.php";
-        const headers = {
-            'Content-Type': 'application/json',
-            'Accept': '*/*'
-        };
-
-        let body = {
-            "name": "kangsinsung",
-            "challenge": "ssssssss"
+       
         
-        };
-
-
-        HttpService.postAsync(url, body, headers).then(
-            (res: HttpResponse) => {
-                console.log(`HTTP Result: ${JSON.stringify(res)}`);
-            });
-      
     }
 
     onLeave(client: SandboxPlayer, consented?: boolean) {
@@ -308,6 +294,33 @@ export default class extends Sandbox {
                 this.broadcast(MESSAGE.MasterResponse, this.sessionIdQueue[0]);
             }
         }
+    }
+
+    RequestChatGPT() {
+        const url: string = "http://ec2-15-165-203-116.ap-northeast-2.compute.amazonaws.com/index.php";
+        const headers = {
+            'Content-Type': 'application/json',
+            'Accept': '*/*'
+        };
+
+        let body = {
+            "name": "kangsinsung",
+            "challenge": "jjjjjj",
+        
+        };
+
+
+        HttpService.postAsync(url, body, headers ).then(
+           
+            (res: HttpResponse) => {
+                
+                console.log(`HTTP Result: ${JSON.stringify(res)}`);
+            });
+            // console.log(url);
+            // console.log(body);
+            // // console.log(httpContentType);
+            // console.log(headers);
+
     }
 }
 
