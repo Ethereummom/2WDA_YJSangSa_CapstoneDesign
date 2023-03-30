@@ -2,58 +2,13 @@ import {Sandbox, SandboxOptions, SandboxPlayer} from "ZEPETO.Multiplay";
 import {Player, sVector3, sQuaternion, SyncTransform, PlayerAdditionalValue, ZepetoAnimationParam} from "ZEPETO.Multiplay.Schema";
 import { HttpContentType, HttpService, HttpResponse, HttpHeader, HttpBodyType } from "ZEPETO.Multiplay.HttpService";
 
-export default class extends Sandbox {
+export default class ss extends Sandbox {
     private sessionIdQueue: string[] = [];
     private InstantiateObjCaches : InstantiateObj[] = [];
     private masterClient = () => this.loadPlayer(this.sessionIdQueue[0]);
 
 
     onCreate(options: SandboxOptions) {
-
-        this.RequestChatGPT();
-
-        // const data = {
-        //     name : 'kimyuhyeon',
-        //     challenge:'wake up'
-        // };
-
-        // const url = "http://ec2-13-124-144-98.ap-northeast-2.compute.amazonaws.com/index.php";
-
-        // const option = {
-        //     method : "POST",
-        //     headers:{
-        //         "Content-Type":"application/json",
-        //     },
-        //     body:JSON.stringify(data),
-        // };
-
-        // fetch(url,option)
-        // .then((response)=>response.json())
-        // .then((data) => console.log(data))
-        // .then((error)=>console.log(error));
-
-
-        // -----------------------------------------------------------------------------------------------------------------
-        
-
-        // -----------------------------------------------------------------------------------------------------------------
-
-
-
-        // this.onMessage('save', async (client, message) => {
-        //     // const request = await HttpService.getAsync('https://.../%27', )
-        //     const request = await HttpService.getAsync('http://13.124.226.182:8080/member01/')
-        //     if (request.statusCode !== 200) {
-        //         console.error('HTTP ERROR');
-        //         return;
-        //     }
-
-        //     const json = JSON.parse(request.response);
-        //     // json 내용 처리
-        // });
-
-
-
 
         /**Zepeto Player Sync**/
         this.onMessage(MESSAGE.SyncPlayer, (client, message) => {
@@ -239,47 +194,11 @@ export default class extends Sandbox {
         if(!this.sessionIdQueue.includes(client.sessionId)) {
             this.sessionIdQueue.push(client.sessionId.toString());
         }
-        console.log(`join player, ${client.sessionId}`);
 
-        // const saveDataToDatabase = async(name : string, challenge: string) => {
-            
-        //     const url = "http://ec2-15-165-203-116.ap-northeast-2.compute.amazonaws.com/index.php";
-        //     const data = {
-        //         name,
-        //         challenge
-        //     };
-        //     const headers = {
-        //         'Content-Type' : 'application/json',
-        //         'Accept' : '*/*'
-        //         // 'ApplicationXml' : 'application/xml',
-        //         // 'ApplicationUrlEncoded' : 'application/x-www-form-urlencoded',
-        //         // 'TextPlain' : 'text/plain',
-        //         // 'TextXml' : 'text/xml'
-        //     };
+        console.log(`userId : , ${player.zepetoUserId}`);
 
-        //     try{
-        //         const request = await HttpService.postAsync(url, JSON.stringify(data),  headers);
-             
-        //         if(request.statusCode!== 200){
-        //             console.error('HTTP ERROR');
-        //             return
-        //         }
-    
-        //         const json = JSON.parse(request.response);
-                
-        //     }catch(error){
-        //         console.log(error);
-        //         console.log(`data : ${data}`);
-        //     }
-    
-        // };
-    
-        // saveDataToDatabase(client.sessionId,"wakeup");
 
-        // const name: string = "kangsinsung";
-        // const challenge: string = "ssssssss";
-       
-        
+        this.RequestUserId(player.zepetoUserId);
     }
 
     onLeave(client: SandboxPlayer, consented?: boolean) {
@@ -296,32 +215,27 @@ export default class extends Sandbox {
         }
     }
 
-    RequestChatGPT() {
-        // const url: string = "http://ec2-15-165-203-116.ap-northeast-2.compute.amazonaws.com/index.php";
-        const url: string = "http://localhost:8080/member01/mem_models/sinsung_dao.jsp";
+        RequestUserId(zepetoUserId : String) {
+        const url: string = "http://ec2-54-180-103-23.ap-northeast-2.compute.amazonaws.com/index.php";
+        // const url: string = "http://localhost:8080/member01/mem_models/sinsung_dao.jsp";
+
         const headers:HttpHeader = {
             'Content-Type': 'application/json',
             // 'Accept': '*/*',
             // // 'Content-Length': 0
         };
 
-        let body:HttpBodyType = {
-            "name": "kangsinsung",
-            "challenge": "jjjjjj",
-        
+        const body:HttpBodyType = {
+            "name": zepetoUserId,
+            "challenge": "miracle morning",
         };
 
-        HttpService.postAsync(url, JSON.stringify(body), headers).then(
+        HttpService.postAsync(url, body, headers).then(
            
             (res: HttpResponse) => {
                 
                 console.log(`HTTP Result: ${JSON.stringify(res)}`);
             });
-            // console.log(url);
-            // console.log(body);
-            // // console.log(httpContentType);
-            // console.log(headers);
-
     }
 }
 

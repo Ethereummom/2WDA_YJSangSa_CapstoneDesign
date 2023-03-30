@@ -3,13 +3,13 @@ import { ZepetoScriptBehaviour } from 'ZEPETO.Script';
 import { Button } from 'UnityEngine.UI';
 import { ZepetoCharacter, ZepetoPlayers } from "ZEPETO.Character.Controller";
 
-import {  } from "./World.multiplay/index";
-
 export default class NPCDialogInteraction extends ZepetoScriptBehaviour {
 
     public npcDialogCanvas: GameObject;
     public yesButton: Button;
     public noButton: Button;
+
+
 
     private _zepetoCharacter: ZepetoCharacter;
 
