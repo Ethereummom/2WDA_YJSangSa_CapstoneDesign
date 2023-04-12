@@ -38,55 +38,65 @@
 						<div class="pl_pro_text">
 							<p>영진상사</p>
 							<p>lv. 10</p>
+
 						</div>
 					</li>
 					<li class="planner_calendar">
-						<div id="datepickerDiv" style="cursor: pointer; padding: 10px 0; width:120px; text-align: center; border: 1px solid #ccc; display: inline-block;">
-						    달력 보기
+						<div id="datepickerDiv" style="cursor: pointer; margin-bottom:10px; padding: 10px 0; width:120px; text-align: center; border: 1px solid #ccc; display: inline-block;">
+							달력 보기
 						</div>
 						<input type="text" id="selected-date-input">
-						<div id="datepickerUI">
-							
+						<div id="datepickerUI"></div>
+					</li>
+					<li class="planner_inputArea">
+						<div>
+							<ul>
+								<li>아침 8시에 기상하기</li>
+								<li>강아지 산책시키기</li>
+								<li>책 읽고 독후감 쓰기</li>
+								<li><button>할 일 추가 + </button></li>
+							</ul>
 						</div>
 					</li>
-					<li class="planner_inputArea"></li>
 				</ul>
 			</div>
 		</div>
 	</div><!-- planner_content End -->
+	<!-- subFooter Start -->
+	<!-- subFooter end -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script>
-    $(function() {
-      // div 요소에 datepicker 설정
-      $("#datepickerDiv").click(function() {
-      	// Datepicker가 표시되어 있는지 체크
-        if ($(".ui-datepicker").is(":visible")) {
-          // 표시되어 있다면 숨김
-          $("#datepickerDiv").text("달력 보기");
-          $("#datepickerUI").hide();
-        } else {
-          // 표시되어 있지 않다면 표시
-          $("#datepickerDiv").text("달력 숨기기");
-          $("#datepickerUI").show();
-        }
+	$(function() {
+	  // div 요소에 datepicker 설정
+	  $("#datepickerDiv").click(function() {
+		// Datepicker가 표시되어 있는지 체크
+		if ($(".ui-datepicker").is(":visible")) {
+		  // 표시되어 있다면 숨김
+		  $("#datepickerDiv").text("달력 보기");
+		  $("#datepickerUI").hide();
+		} else {
+		  // 표시되어 있지 않다면 표시
+		  $("#datepickerDiv").text("달력 숨기기");
+		  $("#datepickerUI").show();
+		}
 
-        $("#datepickerUI").datepicker({
-        	onSelect: function(dateText, inst) {
-	          // 선택한 날짜를 input 요소에 설정
-	          $("#selected-date-input").val(dateText);
-	        },
-	        dateFormat: "yy년 mm월 dd일" // 날짜 형식 설정
-        });
-      });
-      
-      // div 요소를 클릭하면 Datepicker 토글
-      $("#datepickerDiv").on("click", function() {
-        
-      });
+		$("#datepickerUI").datepicker({
+			onSelect: function(dateText, inst) {
+			  // 선택한 날짜를 input 요소에 설정
+			  $("#selected-date-input").val(dateText);
+			},
+			dateFormat: "yy년 mm월 dd일" // 날짜 형식 설정
+		});
+	  });
+	  
+	  // div 요소를 클릭하면 Datepicker 토글
+	  $("#datepickerDiv").on("click", function() {
+		
+	  });
 
 
-    });
+	});
   </script>
 </body>
 </html>
