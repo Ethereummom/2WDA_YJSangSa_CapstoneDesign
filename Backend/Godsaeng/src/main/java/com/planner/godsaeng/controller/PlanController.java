@@ -1,5 +1,9 @@
 package com.planner.godsaeng.controller;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,10 +28,14 @@ public class PlanController {
 	}
 	
 	@GetMapping("/listplan")
-	public String listPlan(Model m) {
-		service.ReadPlan();
+	public List<PlanDTO> listPlan(Model m) {
+		String currentuser_id = (String)(m.getAttribute("u_id"));
+		LocalDateTime todaystime = LocalDateTime.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy-MM-dd");
+		LocalDateTime realtodaystime = todaystime.format(formatter);
 		
-		return null;
+		
+		return service.ReadDailyPlan(currentuser_id,realtodaystime);
 		
 	}
 	

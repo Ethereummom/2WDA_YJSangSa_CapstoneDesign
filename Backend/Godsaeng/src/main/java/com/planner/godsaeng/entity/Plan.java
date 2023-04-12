@@ -1,5 +1,7 @@
 package com.planner.godsaeng.entity;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
@@ -26,16 +28,16 @@ public class Plan {
 	private String u_id;
 	
 	@Column(length=30, nullable=false)
-	private String p_startdate;
+	private LocalDateTime p_startdate;
 	
 	@Column(length=30, nullable=false)
-	private String p_enddate;
+	private LocalDateTime p_enddate;
 	
 	@Column(length=30, nullable=false)
-	private String p_starttime;
+	private LocalDateTime p_starttime;
 	
 	@Column(length=30, nullable=false)
-	private String p_endtime;
+	private LocalDateTime p_endtime;
 	
 	@Column(length=30, nullable=false)
 	private String p_title;

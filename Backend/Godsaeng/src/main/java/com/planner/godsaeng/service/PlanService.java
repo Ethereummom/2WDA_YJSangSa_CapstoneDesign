@@ -1,5 +1,6 @@
 package com.planner.godsaeng.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -40,15 +41,14 @@ public class PlanService {
 		}	
 	}
 	
-	public List<PlanDTO>ReadPlan() {
+	public List<Plan>ReadDailyPlan(String u_id,LocalDateTime p_startdate) {
+		return planRepository.findByUidAndPStartDateOrderByPStartTimeAsc(u_id, p_startdate);
 		
-	
 		
-		return null;
 	}
 	
 	public boolean UpdatePlan(PlanDTO d) {
-		plan = plan.builder()
+		plan = Plan.builder()
 				.p_id(d.getP_id())
 				.u_id(d.getU_id())
 				.p_startdate(d.getP_startdate())
