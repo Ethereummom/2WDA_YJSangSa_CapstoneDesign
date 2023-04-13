@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.planner.godsaeng.dto.PlanDTO;
+import com.planner.godsaeng.entity.Plan;
 import com.planner.godsaeng.service.PlanService;
 
 @Controller
@@ -28,14 +29,12 @@ public class PlanController {
 	}
 	
 	@GetMapping("/listplan")
-	public List<PlanDTO> listPlan(Model m) {
+	public List<Plan> listPlan(Model m) {
 		String currentuser_id = (String)(m.getAttribute("u_id"));
 		LocalDateTime todaystime = LocalDateTime.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy-MM-dd");
-		LocalDateTime realtodaystime = todaystime.format(formatter);
-		
-		
-		return service.ReadDailyPlan(currentuser_id,realtodaystime);
+		String realtodaystime = todaystime.format(formatter);
+		return service.ReadDailyPlan(currentuser_id, realtodaystime);
 		
 	}
 	

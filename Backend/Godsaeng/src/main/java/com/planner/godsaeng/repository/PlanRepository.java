@@ -13,14 +13,14 @@ import com.planner.godsaeng.entity.Plan;
 
 public interface PlanRepository extends JpaRepository<Plan, Long> {
 	//시작일과 종료일을 기준으로 현재 시간과 대조하여 그 사이에 있는 레코드들을 출력해주는 메서드
-	List<Plan>findByStartDateLessThanEqualAndEndDateGreaterThanEqual(LocalDateTime p_startdate, LocalDateTime p_enddate);
+	//List<Plan>findByStartDateLessThanEqualAndEndDateGreaterThanEqual(LocalDateTime p_startdate, LocalDateTime p_enddate);
 	
 	//List<Plan>findByUidAndPStartDateOrderByPStartTimeAsc(String u_id,LocalDateTime p_startdate);
 	
 	@Query("SELECT * FROM Plan WHERE u_id = :u_id "
 			+ "AND p_startdate = :p_startdate "
 			+ "ORDER BY p_starttime ASC")
-	List<Plan> findByUidAndPStartDateOrderByPStartTimeAsc(@Param("u_id") String uId, @Param("p_startdate") LocalDateTime pStartDate);
+	List<Plan> findByUidAndPStartDateOrderByPStartTimeAsc(@Param("u_id") String u_id, @Param("p_startdate") String p_startdate);
 	
 }
 

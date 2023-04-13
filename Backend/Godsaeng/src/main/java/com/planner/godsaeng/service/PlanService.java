@@ -41,7 +41,7 @@ public class PlanService {
 		}	
 	}
 	
-	public List<Plan>ReadDailyPlan(String u_id,LocalDateTime p_startdate) {
+	public List<Plan>ReadDailyPlan(String u_id,String p_startdate) {
 		return planRepository.findByUidAndPStartDateOrderByPStartTimeAsc(u_id, p_startdate);
 		
 		
