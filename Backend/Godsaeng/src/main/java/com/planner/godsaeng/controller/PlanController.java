@@ -31,7 +31,7 @@ public class PlanController {
 	}
 	
 	@GetMapping("/listplan")
-	public List<Plan> listPlan(HttpSession session) {
+	public List<PlanDTO> listPlan(HttpSession session) {
 		String currentuser_id = (String)(session.getAttribute("u_id"));
 		currentuser_id = "hwangju001";
 		return service.ReadDailyPlan(currentuser_id);

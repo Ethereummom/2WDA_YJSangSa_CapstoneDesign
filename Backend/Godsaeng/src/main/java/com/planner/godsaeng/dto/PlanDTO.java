@@ -1,19 +1,22 @@
 package com.planner.godsaeng.dto;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@Builder
 
 public class PlanDTO {
 	
 	private long p_id;
 	private String u_id;
-	private LocalDateTime p_startdate;
-	private LocalDateTime p_enddate;
+	private Date p_startdate;
+	private Date p_enddate;
 	private LocalDateTime p_starttime;
 	private LocalDateTime p_endtime;
 	private String p_title;

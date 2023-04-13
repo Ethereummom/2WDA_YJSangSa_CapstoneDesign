@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,10 +19,17 @@ public interface PlanRepository extends JpaRepository<Plan, Long> {
 	
 	//List<Plan>findByUidAndPStartDateOrderByPStartTimeAsc(String u_id,LocalDateTime p_startdate);
 	
-	@Query("SELECT p FROM Plan p WHERE p.u_id = :u_id "
-			+ "AND DATE(p.p_startdate) = :realtodaystime"
-			+ "ORDER BY p.p_starttime ASC")
+	@Query(value = "SELECT * FROM godsaeng_plan p WHERE p.u_id = :u_id AND DATE(p.p_startdate) = :realtodaystime ORDER BY p.p_starttime ASC", nativeQuery = true)
 	List<Plan> findByUidAndPStartDateOrderByPStartTimeAsc(@Param("u_id") String u_id, @Param("realtodaystime") String realtodaystime);
+	
+	
+	/* JPQL로 해결되지 않아서 그냥 NATIVE QUERY로 처리함 !
+	 * @Transactional
+	 * 
+	 * @Query("SELECT p FROM godsaeng_plan p WHERE (p.u_id = :u_id AND DATE(p.p_startdate) = :realtodaystime) ORDER BY p.p_starttime ASC"
+	 * ) List<Plan> findByUidAndPStartDateOrderByPStartTimeAsc(@Param("u_id") String
+	 * u_id, @Param("realtodaystime") String realtodaystime);
+	 */
 	
 }
 

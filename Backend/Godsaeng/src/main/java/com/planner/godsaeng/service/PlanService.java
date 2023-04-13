@@ -2,6 +2,7 @@ package com.planner.godsaeng.service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -42,12 +43,43 @@ public class PlanService {
 		}	
 	}
 	
-	public List<Plan>ReadDailyPlan(String u_id) {
+	public List<PlanDTO>ReadDailyPlan(String u_id) {
 		
 		LocalDateTime todaystime = LocalDateTime.now();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy-MM-dd");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		String realtodaystime = todaystime.format(formatter);
-		return planRepository.findByUidAndPStartDateOrderByPStartTimeAsc(u_id, realtodaystime);
+		
+		try {
+			List<Plan>planList = planRepository.findByUidAndPStartDateOrderByPStartTimeAsc(u_id, realtodaystime);
+			List<PlanDTO>userDailyPlanList = new ArrayList<>();
+			for(Plan p: planList) {
+				userDailyPlanList.add(
+						PlanDTO.builder()
+							.p_id(p.getP_id())
+							.u_id(p.getU_id())
+							.p_startdate(p.getP_startdate())
+							.p_enddate(p.getP_enddate())
+							.p_starttime(p.getP_starttime())
+							.p_endtime(p.getP_endtime())
+							.p_title(p.getP_title())
+							.p_content(p.getP_content())
+							.p_category(p.getP_category())
+							.p_remindornot(p.getP_remindornot())
+							.build()
+						);
+					
+			}
+			
+			
+			return userDailyPlanList;
+			
+			
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+			
+		}
 		
 		
 	}

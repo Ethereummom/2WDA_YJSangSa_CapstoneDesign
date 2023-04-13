@@ -1,5 +1,6 @@
 package com.planner.godsaeng.entity;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 
 import javax.persistence.*;
@@ -28,10 +29,10 @@ public class Plan {
 	private String u_id;
 	
 	@Column(length=30, nullable=false)
-	private LocalDateTime p_startdate;
+	private Date p_startdate;
 	
 	@Column(length=30, nullable=false)
-	private LocalDateTime p_enddate;
+	private Date p_enddate;
 	
 	@Column(length=30, nullable=false)
 	private LocalDateTime p_starttime;
