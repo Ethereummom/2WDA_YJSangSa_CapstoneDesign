@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@RequestMapping("/publishing")
+@RequestMapping("/plan")
 @RequiredArgsConstructor
 public class PlanController {
 	
@@ -36,13 +36,18 @@ public class PlanController {
 		return null;
 	}
 	
-	@GetMapping("/plan")
+	@GetMapping("/index")
+	public String Mainpage() {
+		return "publishing/index";
+	}
+	
+	@GetMapping("/dailyplan")
 	public String listPlan(HttpSession session, Model model) {
 		String currentuser_id = (String)(session.getAttribute("u_id"));
 		currentuser_id = "sanghee";
 		List<PlanDTO> list = service.ReadDailyPlan(currentuser_id);
 		model.addAttribute("list",list);
-		return "planner";
+		return "publishing/pages/planner";
 		
 	}
 	

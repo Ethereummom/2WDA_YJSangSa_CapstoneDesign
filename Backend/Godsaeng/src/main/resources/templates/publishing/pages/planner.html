@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="ko">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
-	<link rel="stylesheet" href="../css/style.css">
+	<title>오늘 일정</title>
+	<link rel="stylesheet" href="/css/style.css">
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <body>
@@ -14,7 +14,7 @@
 				<ul>
 					<li class="sub_logo">
 						<p>갓생플래너</p>
-						<img src="./img/logo.png" alt="logo">
+						<img src="/img/logo.png" alt="logo">
 					</li>
 					<li class="sub_burger">
 						<span></span>
@@ -32,7 +32,7 @@
 				<ul>
 					<li class="planner_profile">
 						<div class="pl_pro_img">
-							<img src="./img/profile.png" alt="profile">
+							<img src="/img/profile.png" alt="profile">
 							<p>@sinsung test</p>
 						</div>
 						<div class="pl_pro_text">
@@ -52,7 +52,7 @@
 						<div>
 							<ul>
 
-								<li th:each="plan: ${list}"class="list_no_12">[[$plan.title}]]</li>
+								<li th:each="plan: ${list}"class="list_no_12">[[${plan.p_starttime}]] : [[${plan.p_title}]]</li>
 								<div class="btn_li">
 									<button id="addTaskBtn">할 일 추가 <span>+</span> </button>
 								</div>
@@ -60,8 +60,8 @@
 									<div class="modal-content">
 										<h2>아침 8시에 기상하기</h2>
 										<div class="btn_area">
-											<button class="editBtn"><img src="./img/edit.png" alt="edit">시간수정</button>
-											<button><img src="./img/bin.png" alt="bin">삭제하기</button>
+											<button class="editBtn"><img src="/img/edit.png" alt="edit">시간수정</button>
+											<button><img src="/img/bin.png" alt="bin">삭제하기</button>
 										</div>
 										<div class="text_area">
 											<textarea name="" id="" >9시 수영 수업들으러 가야함!!</textarea>
@@ -71,7 +71,7 @@
 												<button>확인</button>
 											</div>
 											<div class="reminder_btn">
-												<label for="chk_reminder"><img src="./img/reminders.png" alt="reminders">리마인더 설정</label>
+												<label for="chk_reminder"><img src="/img/reminders.png" alt="reminders">리마인더 설정</label>
 												<input type="checkbox" id="chk_reminder" name="chk_reminder" >
 											</div>
 										</div>
@@ -88,7 +88,7 @@
 									        <div id="alarm-time-display">00 : 00</div>
 									    </div>
 									    <audio id="alarm-sound">
-									        <source src="./audio/alarm.mp3" type="audio/mpeg">
+									        <source src="/audio/alarm.mp3" type="audio/mpeg">
 									        Your browser does not support the audio element.
 									    </audio>
 
@@ -101,8 +101,8 @@
 										<input id="plan_title" type="text" />
 
 										<div class="btn_area">
-											<button class="editBtn"><img src="./img/edit.png" alt="edit">시간수정</button>
-											<button><img src="./img/bin.png" alt="bin">삭제하기</button>
+											<button class="editBtn"><img src="/img/edit.png" alt="edit">시간수정</button>
+											<button><img src="/img/bin.png" alt="bin">삭제하기</button>
 										</div>
 										<div class="text_area">
 											<textarea name="" id="" ></textarea>
@@ -112,7 +112,7 @@
 												<button>확인</button>
 											</div>
 											<div class="reminder_btn">
-												<label for="chk_reminder_w"><img src="./img/reminders.png" alt="reminders">리마인더 설정</label>
+												<label for="chk_reminder_w"><img src="/img/reminders.png" alt="reminders">리마인더 설정</label>
 												<input type="checkbox" id="chk_reminder_w" name="chk_reminder" >
 											</div>
 										</div>
