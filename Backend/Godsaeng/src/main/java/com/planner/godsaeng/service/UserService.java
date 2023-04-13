@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.planner.godsaeng.dto.UserDTO;
 import com.planner.godsaeng.entity.User;
 import com.planner.godsaeng.repository.UserRepository;
 
+@Service
 public class UserService {
    
    User user = null;

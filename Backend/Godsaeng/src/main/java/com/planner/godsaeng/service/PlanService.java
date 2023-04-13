@@ -8,16 +8,21 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.planner.godsaeng.dto.PlanDTO;
 import com.planner.godsaeng.entity.Plan;
 import com.planner.godsaeng.repository.PlanRepository;
 
-public class PlanService {
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class PlanService {	
+	@Autowired 
+	private final PlanRepository planRepository;
 	
 	Plan plan = null;
-	@Autowired
-	PlanRepository planRepository;
 	
 	//플랜 CREATE(INSERT)
 	public boolean InsertPlan(PlanDTO d) {
@@ -42,7 +47,6 @@ public class PlanService {
 			return false;
 		}	
 	}
-	
 	public List<PlanDTO>ReadDailyPlan(String u_id) {
 		
 		LocalDateTime todaystime = LocalDateTime.now();
@@ -67,22 +71,14 @@ public class PlanService {
 							.p_remindornot(p.getP_remindornot())
 							.build()
 						);
-					
 			}
-			
-			
 			return userDailyPlanList;
-			
-			
-			
 		}catch(Exception e){
 			e.printStackTrace();
 			return null;
-			
 		}
-		
-		
 	}
+	
 	
 	public boolean UpdatePlan(PlanDTO d) {
 		plan = Plan.builder()

@@ -37,7 +37,6 @@ class GodsaengApplicationTests {
 	
 	}
 	@Autowired
-	
 	PlanRepository repo;
 	public List<PlanDTO>ReadDailyPlan(String u_id) {
 		

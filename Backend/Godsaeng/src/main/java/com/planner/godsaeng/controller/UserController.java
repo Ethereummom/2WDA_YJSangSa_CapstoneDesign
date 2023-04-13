@@ -26,7 +26,7 @@ public class UserController {
    }
    
    @GetMapping("/listuser")
-   public String listUer(Model m) {
+   public String listUser(Model m) {
       List<User> list = service.ReadUser();
       m.addAttribute("list", list);
       return null;
@@ -39,7 +39,7 @@ public class UserController {
    }
    
    @GetMapping("/deleteplan")
-   public String deletPlan(UserDTO u) {
+   public String deletePlan(UserDTO u) {
       service.DeleteUser(u.getU_id());
       
       return null;

@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,14 +16,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.planner.godsaeng.dto.PlanDTO;
 import com.planner.godsaeng.entity.Plan;
+import com.planner.godsaeng.repository.PlanRepository;
 import com.planner.godsaeng.service.PlanService;
 
-@Controller
-@RequestMapping("/plan")
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
+@Controller
+@RequestMapping("/publishing")
+@RequiredArgsConstructor
 public class PlanController {
 	
-	PlanService service = new PlanService(); 
+	@Autowired
+	PlanService service;
 	
 	@PostMapping("/addplan")
 	public String addPlan(@ModelAttribute PlanDTO d) {
@@ -30,11 +36,13 @@ public class PlanController {
 		return null;
 	}
 	
-	@GetMapping("/listplan")
-	public List<PlanDTO> listPlan(HttpSession session) {
+	@GetMapping("/plan")
+	public String listPlan(HttpSession session, Model model) {
 		String currentuser_id = (String)(session.getAttribute("u_id"));
-		currentuser_id = "hwangju001";
-		return service.ReadDailyPlan(currentuser_id);
+		currentuser_id = "sanghee";
+		List<PlanDTO> list = service.ReadDailyPlan(currentuser_id);
+		model.addAttribute("list",list);
+		return "planner";
 		
 	}
 	

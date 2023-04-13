@@ -9,10 +9,12 @@ import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import com.planner.godsaeng.dto.PlanDTO;
 import com.planner.godsaeng.entity.Plan;
 
+@Repository
 public interface PlanRepository extends JpaRepository<Plan, Long> {
 	//시작일과 종료일을 기준으로 현재 시간과 대조하여 그 사이에 있는 레코드들을 출력해주는 메서드
 	//List<Plan>findByStartDateLessThanEqualAndEndDateGreaterThanEqual(LocalDateTime p_startdate, LocalDateTime p_enddate);
