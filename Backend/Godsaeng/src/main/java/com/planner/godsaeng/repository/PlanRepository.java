@@ -17,10 +17,10 @@ public interface PlanRepository extends JpaRepository<Plan, Long> {
 	
 	//List<Plan>findByUidAndPStartDateOrderByPStartTimeAsc(String u_id,LocalDateTime p_startdate);
 	
-	@Query("SELECT * FROM Plan WHERE u_id = :u_id "
-			+ "AND p_startdate = :p_startdate "
-			+ "ORDER BY p_starttime ASC")
-	List<Plan> findByUidAndPStartDateOrderByPStartTimeAsc(@Param("u_id") String u_id, @Param("p_startdate") String p_startdate);
+	@Query("SELECT p FROM Plan p WHERE p.u_id = :u_id "
+			+ "AND DATE(p.p_startdate) = :realtodaystime"
+			+ "ORDER BY p.p_starttime ASC")
+	List<Plan> findByUidAndPStartDateOrderByPStartTimeAsc(@Param("u_id") String u_id, @Param("realtodaystime") String realtodaystime);
 	
 }
 

@@ -1,6 +1,7 @@
 package com.planner.godsaeng.service;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -41,8 +42,12 @@ public class PlanService {
 		}	
 	}
 	
-	public List<Plan>ReadDailyPlan(String u_id,String p_startdate) {
-		return planRepository.findByUidAndPStartDateOrderByPStartTimeAsc(u_id, p_startdate);
+	public List<Plan>ReadDailyPlan(String u_id) {
+		
+		LocalDateTime todaystime = LocalDateTime.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy-MM-dd");
+		String realtodaystime = todaystime.format(formatter);
+		return planRepository.findByUidAndPStartDateOrderByPStartTimeAsc(u_id, realtodaystime);
 		
 		
 	}

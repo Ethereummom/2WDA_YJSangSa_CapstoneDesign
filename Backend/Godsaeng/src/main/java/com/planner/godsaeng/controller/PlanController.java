@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,12 +31,10 @@ public class PlanController {
 	}
 	
 	@GetMapping("/listplan")
-	public List<Plan> listPlan(Model m) {
-		String currentuser_id = (String)(m.getAttribute("u_id"));
-		LocalDateTime todaystime = LocalDateTime.now();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy-MM-dd");
-		String realtodaystime = todaystime.format(formatter);
-		return service.ReadDailyPlan(currentuser_id, realtodaystime);
+	public List<Plan> listPlan(HttpSession session) {
+		String currentuser_id = (String)(session.getAttribute("u_id"));
+		currentuser_id = "hwangju001";
+		return service.ReadDailyPlan(currentuser_id);
 		
 	}
 	
