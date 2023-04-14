@@ -40,6 +40,10 @@ public class PlanController {
 	public String Mainpage() {
 		return "publishing/index";
 	}
+	@PostMapping("/refreshPlan")
+	public String RefreshPlan() {
+		return "";
+	}
 	
 	@GetMapping("/dailyplan")
 	public String listPlan(HttpSession session, Model model) {
@@ -48,7 +52,6 @@ public class PlanController {
 		List<PlanDTO> list = service.ReadDailyPlan(currentuser_id);
 		model.addAttribute("list",list);
 		return "publishing/pages/planner";
-		
 	}
 	
 	@PostMapping("/updateplan")
